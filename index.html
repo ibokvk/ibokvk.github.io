@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viper-App | Mobil Oyun & Uygulama Portföyü</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- İkonlar için Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="py-12 px-6 text-center bg-gradient-to-b from-slate-900 to-slate-950 border-b border-slate-800">
+        <div class="max-w-4xl mx-auto">
+            <div class="inline-block p-3 rounded-full bg-indigo-500/10 mb-4">
+                <i data-lucide="gamepad-2" class="w-10 h-10 text-indigo-400"></i>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Viper-App</h1>
+            <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+                Yaratıcı mobil deneyimler, eğlenceli oyunlar ve hayatı kolaylaştıran araçlar geliştiriyoruz.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-12 space-y-16">
+
+        <!-- Yayındaki Uygulamalar (Production) -->
+        <section id="production-section" class="hidden">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="h-8 w-1 bg-green-500 rounded-full"></div>
+                <h2 class="text-2xl font-bold text-white">Yayında</h2>
+            </div>
+            <div id="production-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- JavaScript ile doldurulacak -->
+            </div>
+        </section>
+
+        <!-- Test Aşamasındakiler (Testing) -->
+        <section id="testing-section" class="hidden">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="h-8 w-1 bg-amber-500 rounded-full"></div>
+                <h2 class="text-2xl font-bold text-white">Kapalı Test Aşamasında</h2>
+                <span class="text-xs font-mono bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">Geliştirme Sürüyor</span>
+            </div>
+            <div id="testing-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- JavaScript ile doldurulacak -->
+            </div>
+        </section>
+
+        <!-- Planlanan Projeler (Planned) -->
+        <section id="planned-section" class="hidden">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="h-8 w-1 bg-indigo-500 rounded-full"></div>
+                <h2 class="text-2xl font-bold text-white">Gelecek Projeler</h2>
+            </div>
+            <div id="planned-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- JavaScript ile doldurulacak -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-900 py-8 mt-12 text-center text-slate-500 text-sm">
+        <p>&copy; 2024 Viper-App. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <!-- JAVASCRIPT: BURADAN DÜZENLEME YAPABİLİRSİNİZ -->
+    <script>
+        // --- UYGULAMA LİSTESİ ---
+        // Durumlar (status): 
+        // "production" (Yayında/Üretim)
+        // "testing"    (Kapalı Test)
+        // "planned"    (Planlanan)
+        
+        const apps = [
+            // Üretimdekiler
+            {
+                name: "Yok Artık!",
+                id: "app.viper_app.yok_artik",
+                status: "production",
+                desc: "Şaşırtıcı gerçekler ve eğlenceli içerikler.",
+                icon: "sparkles" // İkon adı veya resim URL'si
+            },
+
+            // Kapalı Testtekiler
+            {
+                name: "Bugün Ne Yapmalı?",
+                id: "app.viper_app.bny",
+                status: "testing",
+                desc: "Gününüzü planlamak için öneriler.",
+                icon: "calendar-check"
+            },
+            {
+                name: "FlagGO",
+                id: "app.viper_app.flaggo",
+                status: "testing",
+                desc: "Bayrakları tahmin et ve coğrafya bilgini test et.",
+                icon: "flag"
+            },
+            {
+                name: "Geleceğe Mektup",
+                id: "app.viper_app.geleceemektup",
+                status: "testing",
+                desc: "Kendine veya sevdiklerine gelecekte okunacak notlar bırak.",
+                icon: "mail"
+            },
+            {
+                name: "GyroRoad",
+                id: "app.viper_app.gyroroad",
+                status: "testing",
+                desc: "Jiroskop kontrollü heyecan verici bir yolculuk.",
+                icon: "smartphone"
+            },
+            {
+                name: "Tini",
+                id: "app.viper_app.tini",
+                status: "testing",
+                desc: "Minimalist ve rahatlatıcı bir deneyim.",
+                icon: "circle"
+            },
+            {
+                name: "Zeka Kutusu",
+                id: "app.viper_app.zeka_kutusu",
+                status: "testing",
+                desc: "Beyin egzersizleri ve zeka oyunları.",
+                icon: "brain-circuit"
+            },
+
+            // Planlananlar
+            { name: "Kelime Bulutu", status: "planned", icon: "cloud" },
+            { name: "Labirent Oyun", status: "planned", icon: "layout-grid" },
+            { name: "GyroRoad 3D", status: "planned", icon: "box" },
+            { name: "O mu Bu mu", status: "planned", icon: "split" },
+            { name: "Halka Geçirme", status: "planned", icon: "disc" }
+        ];
+
+        // --- SAYFA OLUŞTURUCU (Buralara dokunmanıza gerek yok) ---
+
+        const productionList = document.getElementById('production-list');
+        const testingList = document.getElementById('testing-list');
+        const plannedList = document.getElementById('planned-list');
+
+        const productionSection = document.getElementById('production-section');
+        const testingSection = document.getElementById('testing-section');
+        const plannedSection = document.getElementById('planned-section');
+
+        // Gerçek ikonunuz varsa değiştirmek için: 
+        // `img src="${app.iconUrl}"` kullanabilirsiniz. Şu an Lucide ikonları kullanıyoruz.
+        
+        apps.forEach(app => {
+            if (app.status === 'production') {
+                productionSection.classList.remove('hidden');
+                productionList.innerHTML += createCard(app, 'green');
+            } else if (app.status === 'testing') {
+                testingSection.classList.remove('hidden');
+                testingList.innerHTML += createCard(app, 'amber');
+            } else if (app.status === 'planned') {
+                plannedSection.classList.remove('hidden');
+                plannedList.innerHTML += createPlannedCard(app);
+            }
+        });
+
+        function createCard(app, color) {
+            // Renk sınıfları
+            const colors = {
+                green: { border: 'border-green-500/20', badge: 'bg-green-500/10 text-green-400 border-green-500/20', btn: 'bg-green-600 hover:bg-green-500' },
+                amber: { border: 'border-amber-500/20', badge: 'bg-amber-500/10 text-amber-400 border-amber-500/20', btn: 'bg-slate-700 hover:bg-slate-600 cursor-not-allowed' }
+            };
+            const theme = colors[color];
+            const btnText = app.status === 'production' ? 'İncele' : 'Test Sürümü';
+            
+            // NOT: İkonlarınızı eklediğinizde aşağıdaki <i> etiketini silip yerine
+            // <img src="ikon_dosyaniz.png" class="w-12 h-12 rounded-lg" alt="${app.name}">
+            // kodunu kullanabilirsiniz.
+            
+            return `
+                <div class="glass-card rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-${color}-500/5 group">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 group-hover:text-white transition-colors border border-slate-700">
+                             <i data-lucide="${app.icon}" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-xs font-medium px-2.5 py-1 rounded-full border ${theme.badge}">
+                            ${app.status === 'production' ? 'Yayında' : 'Kapalı Test'}
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-1">${app.name}</h3>
+                    <p class="text-xs text-slate-500 font-mono mb-3">${app.id}</p>
+                    <p class="text-sm text-slate-400 mb-6 leading-relaxed">${app.desc}</p>
+                    <button class="w-full py-2.5 rounded-lg text-sm font-semibold text-white transition-colors ${theme.btn}">
+                        ${btnText}
+                    </button>
+                </div>
+            `;
+        }
+
+        function createPlannedCard(app) {
+            return `
+                <div class="p-4 rounded-xl bg-slate-900 border border-slate-800/50 flex items-center gap-4 opacity-70 hover:opacity-100 transition-opacity">
+                    <div class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-indigo-400">
+                        <i data-lucide="${app.icon}" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-medium text-slate-200">${app.name}</h4>
+                        <span class="text-xs text-slate-500">Planlanıyor</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        // İkonları yükle
+        lucide.createIcons();
+    </script>
+</body>
+</html>
