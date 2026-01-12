@@ -21,11 +21,14 @@
 
     <!-- Header -->
     <header class="py-12 px-6 text-center bg-gradient-to-b from-slate-900 to-slate-950 border-b border-slate-800">
-        <div class="max-w-4xl mx-auto">
+        <div class="max-w-4xl mx-auto flex flex-col items-center">
             <div class="inline-block p-3 rounded-full bg-indigo-500/10 mb-4">
                 <i data-lucide="gamepad-2" class="w-10 h-10 text-indigo-400"></i>
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Viper-App</h1>
+            <!-- Başlığa link eklendi -->
+            <a href="https://play.google.com/store/apps/developer?id=Viper-App" target="_blank" class="group transition-all hover:scale-105">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight group-hover:text-indigo-400 transition-colors">Viper-App</h1>
+            </a>
             <p class="text-lg text-slate-400 max-w-2xl mx-auto">
                 Yaratıcı mobil deneyimler, eğlenceli oyunlar ve hayatı kolaylaştıran araçlar geliştiriyoruz.
             </p>
@@ -48,10 +51,16 @@
 
         <!-- Test Aşamasındakiler (Testing) -->
         <section id="testing-section" class="hidden">
-            <div class="flex items-center gap-3 mb-8">
+            <div class="flex flex-wrap items-center gap-3 mb-8">
                 <div class="h-8 w-1 bg-amber-500 rounded-full"></div>
-                <h2 class="text-2xl font-bold text-white">Kapalı Test Aşamasında</h2>
+                <h2 class="text-2xl font-bold text-white mr-2">Kapalı Test Aşamasında</h2>
                 <span class="text-xs font-mono bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">Geliştirme Sürüyor</span>
+                
+                <!-- Google Groups Butonu Eklendi -->
+                <a href="https://groups.google.com/g/viper-app-tester" target="_blank" class="ml-auto flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white text-sm px-4 py-2 rounded-lg border border-slate-700 transition-colors">
+                    <i data-lucide="users" class="w-4 h-4 text-amber-400"></i>
+                    <span>Google Groups</span>
+                </a>
             </div>
             <div id="testing-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- JavaScript ile doldurulacak -->
@@ -89,16 +98,16 @@
             {
                 name: "Yok Artık!",
                 id: "app.viper_app.yok_artik",
-                status: "testing",
+                status: "production",
                 desc: "Şaşırtıcı gerçekler ve eğlenceli içerikler.",
-                icon: "/yokartik.png" // İkon adı veya resim URL'si
+                icon: "yokartik.png" // Özel resim dosyası
             },
 
             // Kapalı Testtekiler
             {
                 name: "Bugün Ne Yapmalı?",
                 id: "app.viper_app.bny",
-                status: "production",
+                status: "testing",
                 desc: "Gününüzü planlamak için öneriler.",
                 icon: "calendar-check"
             },
@@ -119,7 +128,7 @@
             {
                 name: "GyroRoad",
                 id: "app.viper_app.gyroroad",
-                status: "production",
+                status: "testing",
                 desc: "Jiroskop kontrollü heyecan verici bir yolculuk.",
                 icon: "smartphone"
             },
@@ -156,9 +165,6 @@
         const testingSection = document.getElementById('testing-section');
         const plannedSection = document.getElementById('planned-section');
 
-        // Gerçek ikonunuz varsa değiştirmek için: 
-        // `img src="${app.iconUrl}"` kullanabilirsiniz. Şu an Lucide ikonları kullanıyoruz.
-        
         apps.forEach(app => {
             if (app.status === 'production') {
                 productionSection.classList.remove('hidden');
@@ -175,21 +181,27 @@
         function createCard(app, color) {
             // Renk sınıfları
             const colors = {
-                green: { border: 'border-green-500/20', badge: 'bg-green-500/10 text-green-400 border-green-500/20', btn: 'bg-green-600 hover:bg-green-500' },
-                amber: { border: 'border-amber-500/20', badge: 'bg-amber-500/10 text-amber-400 border-amber-500/20', btn: 'bg-slate-700 hover:bg-slate-600 cursor-not-allowed' }
+                green: { border: 'border-green-500/20', badge: 'bg-green-500/10 text-green-400 border-green-500/20', btn: 'bg-green-600 hover:bg-green-500 text-white' },
+                amber: { border: 'border-amber-500/20', badge: 'bg-amber-500/10 text-amber-400 border-amber-500/20', btn: 'bg-amber-600 hover:bg-amber-500 text-white' }
             };
             const theme = colors[color];
             const btnText = app.status === 'production' ? 'İncele' : 'Test Sürümü';
+            const playStoreUrl = `https://play.google.com/store/apps/details?id=${app.id}`;
             
-            // NOT: İkonlarınızı eklediğinizde aşağıdaki <i> etiketini silip yerine
-            // <img src="ikon_dosyaniz.png" class="w-12 h-12 rounded-lg" alt="${app.name}">
-            // kodunu kullanabilirsiniz.
+            // İkon Kontrolü: Dosya uzantısı (png/jpg) varsa img, yoksa lucide ikonu
+            let iconElement;
+            if (app.icon.includes('.')) {
+                iconElement = `<img src="${app.icon}" class="w-full h-full object-cover rounded-xl" alt="${app.name}">`;
+            } else {
+                iconElement = `<i data-lucide="${app.icon}" class="w-6 h-6"></i>`;
+            }
             
+            // Buton "a" etiketine dönüştürüldü ve link eklendi
             return `
-                <div class="glass-card rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-${color}-500/5 group">
+                <div class="glass-card rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-${color}-500/5 group flex flex-col h-full">
                     <div class="flex items-start justify-between mb-4">
-                        <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 group-hover:text-white transition-colors border border-slate-700">
-                             <img src="yokartik.png" class="w-12 h-12 rounded-lg" alt="${app.name}">
+                        <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 group-hover:text-white transition-colors border border-slate-700 overflow-hidden">
+                             ${iconElement}
                         </div>
                         <span class="text-xs font-medium px-2.5 py-1 rounded-full border ${theme.badge}">
                             ${app.status === 'production' ? 'Yayında' : 'Kapalı Test'}
@@ -197,10 +209,10 @@
                     </div>
                     <h3 class="text-xl font-bold text-white mb-1">${app.name}</h3>
                     <p class="text-xs text-slate-500 font-mono mb-3">${app.id}</p>
-                    <p class="text-sm text-slate-400 mb-6 leading-relaxed">${app.desc}</p>
-                    <button class="w-full py-2.5 rounded-lg text-sm font-semibold text-white transition-colors ${theme.btn}">
+                    <p class="text-sm text-slate-400 mb-6 leading-relaxed flex-grow">${app.desc}</p>
+                    <a href="${playStoreUrl}" target="_blank" class="block w-full text-center py-2.5 rounded-lg text-sm font-semibold transition-colors ${theme.btn}">
                         ${btnText}
-                    </button>
+                    </a>
                 </div>
             `;
         }
